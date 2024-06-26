@@ -36,9 +36,9 @@ function query(gFilterBy = {}) {
                 const regex = new RegExp(gFilterBy.status, 'i')
                 mails = mails.filter(mail => regex.test(mail.status))
             }
-            // if (gFilterBy.isRead) {
-            //     mails = mails.filter(mail => mail.listPrice.amount >= gFilterBy.price)
-            // }
+            if (gFilterBy.sentAt) {
+                mails = mails.filter(mail => mail.sentAt>= gFilterBy.sentAt)
+            }
             return mails
         })
 }
@@ -75,6 +75,8 @@ function getEmptyMail(id = '', subject = '', body = '') {
 
 function _createMails() {
     let mails = storageService.loadFromStorage(MAIL_KEY)
+    const emailAdress = ['momo@momo.com','puki@puki.com','muki@muki.com','Netflix', 'YouTube','Amazom Prime']
+    const timeStamps = [1719421615,1719421595,1687788395000,1590501995000,1719410795000,1719389495000,1707988295000,1713287495000,1719378695000]
     if (!mails || mails.length) {
         mails = []
         for (let i = 0; i < 10; i++) {
@@ -83,11 +85,12 @@ function _createMails() {
                 id: utilService.makeId(),
                 createdAt: 1551133930500, // new Date(),
                 subject: utilService.makeLorem(2),
-                body: utilService.makeLorem(6),
+                body: utilService.makeLorem(8),
                 isRead: false,
-                sentAt: 1551133930594,
+                // sentAt: 1752636800000,
+                sentAt:timeStamps[utilService.getRandomIntInclusive(0, timeStamps.length - 1)] ,
                 removedAt: null,
-                from: 'momo@momo.com',
+                from: emailAdress[utilService.getRandomIntInclusive(0, emailAdress.length - 1)],
                 to: 'user@appsus.co'
             }
             mails.push(mail)
