@@ -21,6 +21,10 @@
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
 
+/* notes */
+
+@import './cmps/NotePreview.css';
+
 /* Mail */
 @import './apps/mail/cmps/MailList.css';
 @import './apps/mail/cmps/MailPreview.css';
