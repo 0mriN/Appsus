@@ -21,13 +21,13 @@ function _CreateNotes() {
     if (!notes || !notes.length) {
         notes = []
         notes.push(_CreateNoteTxt())
-        notes.push(_CreateNoteTxt())
-        notes.push(_CreateNoteTxt())
-        notes.push(_CreateNoteImg())
-        notes.push(_CreateNoteImg())
         notes.push(_CreateNoteImg())
         notes.push(_CreateNoteTodos())
+        notes.push(_CreateNoteTxt())
         notes.push(_CreateNoteTodos())
+        notes.push(_CreateNoteImg())
+        notes.push(_CreateNoteTxt())
+        notes.push(_CreateNoteImg())
         notes.push(_CreateNoteTodos())
         storageService.saveToStorage(NOTE_KEY, notes)
     }
@@ -40,7 +40,7 @@ function _CreateNoteTodos() {
         type: 'NoteTodos',
         isPinned: false,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: 'white'
         },
         info: {
             title: utilService.makeLorem(4),
@@ -59,7 +59,7 @@ function _CreateNoteImg() {
         type: 'NoteImg',
         isPinned: false,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: 'white'
         },
         info: {
             title: utilService.makeLorem(4),
@@ -76,7 +76,7 @@ function _CreateNoteTxt() {
         type: 'NoteTxt',
         isPinned: false,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: 'white'
         },
         info: {
             title: utilService.makeLorem(4),

@@ -1,4 +1,4 @@
-import { utilService } from "../../../services/util.service";
+import { utilService } from "../../../services/util.service.js";
 
 
 export function NotePreview({ note }) {
@@ -22,8 +22,8 @@ export function NotePreview({ note }) {
 function NoteTxt({ info, onChangeInfo }) {
     return (
         <React.Fragment>
-            <h2>{info.title && info.title}</h2>
-            <p>{info.txt && info.txt}</p>
+            <h2>{info.title}</h2>
+            <p>{info.txt}</p>
         </React.Fragment>
     )
 }
@@ -32,6 +32,8 @@ function NoteImg({ info, onChangeInfo }) {
     return (
         <React.Fragment>
             <img src={info.url} alt="" />
+            <h2>{info.title}</h2>
+            <p>{info.txt}</p>
         </React.Fragment>
     )
 }
@@ -41,7 +43,7 @@ function NoteTodos({ info, onChangeInfo }) {
     // console.log(id);
     return (
         <React.Fragment>
-            <h2>{info.title && info.title}</h2>
+            <h2>{info.title}</h2>
             <ul>
                 {info.todos.map(todo =>
                     <li key={todo.todoId}>
