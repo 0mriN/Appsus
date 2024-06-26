@@ -1,0 +1,10 @@
+.note-preview .preview-svg {
+    display: flex;
+    justify-content: space-between;
+}
+
+.note-preview .preview-svg>svg:hover {
+    cursor: pointer;
+    scale: 1.3;
+    transition: .6s;
+}
