@@ -45,16 +45,13 @@
 
 }
 
-.mail-preview .body {
-    flex-grow: 1;
-    text-align: start;
-}
 
 .mail-preview .subject {
     flex-grow: 1.5;
 }
 
 .mail-preview:hover .date {
+    flex-grow: 1;
     opacity: 0;
     transition: 0.3s ;
 }
@@ -76,7 +73,8 @@
 
 .mail-preview:hover .right-symbols {
     opacity: 1;
-    transition: 0.5s;
+    transition:opacity 0.5s;
+    transition:transform 0.5s;
     transform: translateX(70px);
     z-index: 1;
 }
