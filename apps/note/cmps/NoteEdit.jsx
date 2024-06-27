@@ -2,7 +2,6 @@ const { useNavigate, useParams } = ReactRouterDOM
 const { useState, useEffect } = React
 
 import { noteService } from "../services/note.service.js"
-import { Accordion } from "./Accordion.jsx"
 
 export function NoteEdit() {
     const [noteToEdit, setNoteToEdit] = useState(null)
@@ -36,9 +35,10 @@ export function NoteEdit() {
         let value = target.value
 
         setNoteToEdit(prevNote => ({
-             ...prevNote,
-              info:
-                 { ...prevNote.info, [field]: value } }))
+            ...prevNote,
+            info:
+                { ...prevNote.info, [field]: value }
+        }))
     }
 
     function onImgInput(ev) {

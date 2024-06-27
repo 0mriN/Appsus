@@ -1,20 +1,25 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: 3rem 1fr 3rem;
+}
+
 .note-index {
     margin: 0 auto;
+    grid-column: 2;
 }
 
 .note-header {
     display: flex;
     align-content: start;
-    /* justify-content: space-between; */
+
     padding: 10px 3.15rem;
     font-size: 16px;
     line-height: 27px;
-    /* text-align: start; */
-    gap:83px
+
+    gap: 83px
 }
 
 .note-header img {
     height: 3.69rem;
     width: 6.25rem;
-    /* background-color: white; */
 }

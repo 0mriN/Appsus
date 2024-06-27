@@ -81,6 +81,15 @@ function _CreateNotes() {
         notes.push(_CreateNoteTxt())
         notes.push(_CreateNoteImg())
         notes.push(_CreateNoteTodos())
+        notes.push(_CreateNoteTxt())
+        notes.push(_CreateNoteImg())
+        notes.push(_CreateNoteTodos())
+        notes.push(_CreateNoteTxt())
+        notes.push(_CreateNoteTodos())
+        notes.push(_CreateNoteImg())
+        notes.push(_CreateNoteTxt())
+        notes.push(_CreateNoteImg())
+        notes.push(_CreateNoteTodos())
         storageService.saveToStorage(NOTE_KEY, notes)
     }
 }

@@ -1,9 +1,8 @@
 import { noteService } from "../services/note.service.js"
-import { AddNote } from "./AddNote.jsx"
 
 const { useState, useEffect, useRef } = React
 
-export function Accordion({ children, title = 'Some important title' }) {
+export function Accordion() {
 
     const [newNote, setNewNote] = useState({ title: '', txt: '' })
     const [isOpen, setIsOpen] = useState(false)

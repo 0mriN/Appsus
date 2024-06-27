@@ -1,7 +1,5 @@
- /* note list */
  .note-list {
      columns: 4 13.75rem;
-     column-gap: 0.8rem;
 
      list-style-type: none;
  }
