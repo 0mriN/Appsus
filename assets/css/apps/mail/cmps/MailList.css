@@ -2,7 +2,6 @@
 
  .mail-list {
      list-style: none;
-     padding: 15px 0 0 ;
+     padding: 15px 0 0;
      display: grid;
-     /* gap:1px */
  }

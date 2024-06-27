@@ -7,7 +7,6 @@
 
 .mail-add form {
     display: grid;
-    /* grid-template-columns: 1fr; */
     padding: 20px;
     width: 400px;
     gap: 10px;

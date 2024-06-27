@@ -1,45 +1,45 @@
  /* mail index  */
  .mail-header {
-    display: flex;
-    align-content: start;
-    padding: 10px 3.15rem;
-    font-size: 16px;
-    line-height: 27px;
-    gap:83px
-}
+     display: flex;
+     align-content: start;
+     padding: 10px 3.15rem;
+     font-size: 16px;
+     line-height: 27px;
+     gap: 83px;
+ }
+
  .mail-header img {
-    height: 3.69rem;
-    width: 6.25rem;
-}
+     height: 3.69rem;
+     width: 6.25rem;
+ }
 
-.mail-filter {
-    flex:1;
-    text-align: start;
-}
+ .mail-filter {
+     flex: 1;
+     text-align: start;
+ }
 
-.mail-filter input {
-    text-align: center;
-    width:45rem;
-    height:3rem;
-    border-radius: 30px;
-    font-size: x-large;
-    align-self: center;
-    background: #eaf1fb;
-    transform: translateX(20px)
-}
+ .mail-filter input {
+     text-align: center;
+     width: 45rem;
+     height: 3rem;
+     border-radius: 30px;
+     font-size: x-large;
+     align-self: center;
+     background: #eaf1fb;
+     transform: translateX(20px)
+ }
 
-.mail-add-btn  {
-    width:7.375rem;
-    height:3.7rem;
-    border-radius: 16px;
-    background-color: #c2e7ff;
-    font-family:'roboto';
-    font-weight: bold;
-    cursor: pointer;
-    /* background-color: black; */
-}
+ .mail-add-btn {
+     width: 7.375rem;
+     height: 3.7rem;
+     border-radius: 16px;
+     background-color: #c2e7ff;
+     font-family: 'roboto';
+     font-weight: bold;
+     cursor: pointer;
+ }
 
-.mail-options{
-    background: #f6f8fc;
-    padding:0 0 0 8px ;
-}
+ .mail-options {
+     background: #f6f8fc;
+     padding: 0 0 0 8px;
+ }

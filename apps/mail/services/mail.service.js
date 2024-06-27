@@ -44,7 +44,7 @@ function query(filterBy = {}) {
                 const regex = new RegExp(filterBy.subject, 'i')
                 mailsToDisplay = mails.filter(mail => regex.test(mail.subject))
             }
-            if(filterBy.body && !mailsToDisplay.length) {
+            if (filterBy.body && !mailsToDisplay.length) {
                 const regex = new RegExp(filterBy.body, 'i')
                 mailsToDisplay = mails.filter(mail => regex.test(mail.body))
             }
@@ -68,16 +68,6 @@ function save(mail) {
     }
 }
 
-// const gFilterBy = {
-//     status: 'inbox/sent/trash/draft',
-//     txt: 'puki',
-//     isRead: true,
-//     isStared: true,
-//     lables: ['important', 'romantic']
-// }
-// function getDefaultFilter(filterBy = {subject: '',from: '', to:'', status: '', body:'',isRead: '', isStared:'',lables:['']} ) {
-
-
 function getDefaultFilter(filterBy = { subject: '', from: '', to: '', status: '', body: '', isRead: '', isStared: '', lables: [''] }) {
     return {
         subject: filterBy.subject,
@@ -92,7 +82,7 @@ function getDefaultFilter(filterBy = { subject: '', from: '', to: '', status: ''
     }
 }
 
-function getEmptyMail(to ='', subject = '', body = ''){
+function getEmptyMail(to = '', subject = '', body = '') {
 
     return {
         from: (`${loggedinUser.email} , ${loggedinUser.fullname}`),

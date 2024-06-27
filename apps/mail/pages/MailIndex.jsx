@@ -45,21 +45,27 @@ export function MailIndex() {
     return (
         <section>
             <header className="mail-header">
-            <img src="./assets/img/c-gmail-logo.png"></img>
+                <img src="./assets/img/c-gmail-logo.png"></img>
                 <MailFilter filterBy={filterBy} onSetFilter={onSetFilter} className="mail-search" />
 
             </header>
             <section className="mail-index">
                 <div className="mail-options">
-                <Link to="/mail/add" >
-                <button className="mail-add-btn">
-                    Compose
-                    </button>
+                    <Link to="/mail/add" >
+                        <button className="mail-add-btn">
+                            Compose
+                        </button>
                     </Link>
                 </div>
                 <MailList
                     mails={mails}
                     onRemoveMail={onRemoveMail} />
+                <div className="nav-symbols">
+                    <span class="material-symbols-outlined calendar">calendar_month</span>
+                    <span class="material-symbols-outlined notes">batch_prediction</span>
+                    <span class="material-symbols-outlined task">task_alt</span>
+                    <span class="material-symbols-outlined contact">contacts_product</span>
+                </div>
             </section>
         </section>
     )

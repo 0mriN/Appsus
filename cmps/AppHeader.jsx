@@ -5,7 +5,7 @@ export function AppHeader() {
 
     return <header className="app-header">
         <Link to="/" className="logo animate__bounce">
-         <img src="./assets/img/susapp.png"></img>
+            <img src="./assets/img/susapp.png"></img>
             <h1>Sus App</h1>
         </Link>
         <nav>

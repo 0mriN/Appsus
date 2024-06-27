@@ -1,9 +1,8 @@
 header {
-    background:#f6f8fc;
-    /* border-bottom: 2px solid white; */
+    background: #f6f8fc;
     font-size: 13px;
     font-family: 'roboto';
-    font-weight:500;
+    font-weight: 500;
 
 }
 
@@ -14,6 +13,7 @@ header {
     padding: 8px 0;
     line-height: 27px;
 }
+
 .app-header .logo {
     display: flex;
     align-items: center;
@@ -23,15 +23,16 @@ header {
     height: 3.69rem;
     background-color: white;
 }
- 
+
 .app-header h1 {
     font-size: 1.3rem;
 }
+
 nav a {
     margin: .5em;
     font-size: 1.5rem;
 }
 
 nav a.active {
-    font-weight:900;
+    font-weight: 900;
 }

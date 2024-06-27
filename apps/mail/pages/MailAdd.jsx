@@ -1,21 +1,21 @@
 import { mailService } from "../services/mail.service.js"
-const {useNavigate,Link} = ReactRouterDOM
+const { useNavigate, Link } = ReactRouterDOM
 const { useState } = React
 // const { Link } = ReactRouterDOM
 
 
 export function MailAdd() {
     const [addMail, setAddMail] = useState(mailService.getEmptyMail())
-    const navigate =useNavigate()
-    
+    const navigate = useNavigate()
+
     function onSaveMail(ev) {
         ev.preventDefault()
         mailService.save(addMail)
-        .then(()=>{
-            console.log('Mail Sent!')
-            navigate('/mail')
-        })
-        .catch(err=>console.log('err:', err))
+            .then(() => {
+                console.log('Mail Sent!')
+                navigate('/mail')
+            })
+            .catch(err => console.log('err:', err))
 
     }
 
@@ -25,7 +25,7 @@ export function MailAdd() {
         setAddMail(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
-const {to, subject, body} = addMail
+    const { to, subject, body } = addMail
 
     return (
         <section className="mail-add">
@@ -38,7 +38,7 @@ const {to, subject, body} = addMail
                 <label htmlFor="subject">Subject</label>
                 <input onChange={handleChange} value={subject} type="text" name="subject" id="subject" />
                 <textarea onChange={handleChange} value={body} name="body" id="body">
-                    
+
                 </textarea>
                 <button>Send</button>
 

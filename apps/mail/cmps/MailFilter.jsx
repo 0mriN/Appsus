@@ -5,7 +5,7 @@ const { useState, useEffect, useRef } = React
 export function MailFilter({ filterBy, onSetFilter }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-    const onDebounce = useRef(utilService.debounce(onSetFilter,500))
+    const onDebounce = useRef(utilService.debounce(onSetFilter, 500))
 
     useEffect(() => {
         onDebounce.current(filterByToEdit)
@@ -30,7 +30,7 @@ export function MailFilter({ filterBy, onSetFilter }) {
             default:
                 break
         }
-        setFilterByToEdit(prevFilter => ({ ...prevFilter, from: value , subject:value , body:value}))
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, from: value, subject: value, body: value }))
     }
 
     const { from } = filterByToEdit

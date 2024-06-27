@@ -3,6 +3,30 @@
     font-size: 18px;
     border-radius: 15px;
     display: grid;
-    grid-template-columns:16rem 97.5rem 3.5rem;
-   
+    grid-template-columns: 16rem 97.5rem 3.5rem;
+}
+
+.nav-symbols {
+    display: grid;
+    grid-column: 3;
+    background-color: #f6f8fc;
+    align-items: center;
+    justify-items: center;
+    height: 10rem;
+}
+
+.calendar {
+    color: #0b588b
+}
+
+.notes {
+    color: rgb(180, 159, 1)
+}
+
+.task {
+    color: green
+}
+
+.contact {
+    color: rgb(12, 139, 182)
 }
