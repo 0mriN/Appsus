@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-between;
     opacity: 0;
+
+    z-index: 20;
 }
 
 .note-preview .preview-svg>svg:hover {
@@ -10,7 +12,7 @@
     transition: .6s;
 }
 
-.note-preview:hover .preview-svg{
+.note-preview:hover .preview-svg {
     opacity: 1;
     transition: .4s;
 }

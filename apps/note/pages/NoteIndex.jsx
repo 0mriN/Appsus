@@ -1,6 +1,5 @@
 import { noteService } from "../services/note.service.js";
 import { NoteList } from "../cmps/NoteList.jsx";
-import { AddNote } from "../cmps/AddNote.jsx";
 import { Accordion } from "../cmps/Accordion.jsx";
 
 const { useEffect, useState } = React
@@ -19,7 +18,9 @@ export function NoteIndex() {
             })
     }
 
-    function removeNote(noteId) {
+    function removeNote(ev, noteId) {
+        ev.stopPropagation()
+        ev.preventDefault()
         noteService.remove(noteId)
             .then(() => {
                 setNotes(prevNotes => prevNotes.filter(note => noteId !== note.is))
@@ -32,13 +33,14 @@ export function NoteIndex() {
             <header className="note-header">
                 <img src="./assets/img/keep-logo.png"></img>
             </header>
-            <section className="note-index">
-                {/* <AddNote /> */}
-                <Accordion />
-                <NoteList
-                    notes={notes}
-                    removeNote={removeNote}
-                />
+            <section className="main-layout">
+                <section className="note-index">
+                    <Accordion />
+                    <NoteList
+                        notes={notes}
+                        removeNote={removeNote}
+                    />
+                </section>
             </section>
         </React.Fragment>
     )
