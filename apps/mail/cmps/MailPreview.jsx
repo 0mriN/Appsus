@@ -1,6 +1,7 @@
-export function MailPreview({ mail }) {
+export function MailPreview({ mail,onRemoveMail }) {
     let date
-
+// console.log('onRemoveMail:', onRemoveMail);
+    
     getDate(mail.sentAt)
 
     function getDate(sentAt) {
@@ -24,7 +25,7 @@ export function MailPreview({ mail }) {
             <h3 className="subject">{mail.subject}</h3>
             <p className="subject">{mail.body}</p>
             <span className="material-symbols-outlined archive right-symbols">archive</span>
-            <span className="material-symbols-outlined delete right-symbols">delete</span>
+            <span onClick={()=> onRemoveMail(mail.id)} className="material-symbols-outlined delete right-symbols">delete</span>
             <span className="material-symbols-outlined unread right-symbols">mark_email_unread</span>
             {/* <span className="material-symbols-outlined read right-symbols">mark_email_read</span> */}
             <span className="material-symbols-outlined schedule right-symbols">schedule</span>
