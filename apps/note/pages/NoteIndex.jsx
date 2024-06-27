@@ -1,5 +1,6 @@
 import { noteService } from "../services/note.service.js";
 import { NoteList } from "../cmps/NoteList.jsx";
+import { AddNote } from "../cmps/AddNote.jsx";
 
 const { useEffect, useState } = React
 
@@ -8,7 +9,7 @@ export function NoteIndex() {
 
     useEffect(() => {
         loadNotes()
-    }, [])
+    }, [notes])
 
     function loadNotes() {
         noteService.query()
@@ -17,11 +18,21 @@ export function NoteIndex() {
             })
     }
 
+    function removeNote(noteId) {
+        noteService.remove(noteId)
+            .then(() => {
+                setNotes(prevNotes => prevNotes.filter(note => noteId !== note.is))
+            })
+    }
 
     if (!notes) return <div>Loading...</div>
     return (
         <section className="note-index">
-            <NoteList notes={notes} />
+            <AddNote />
+            <NoteList
+                notes={notes}
+                removeNote={removeNote}
+            />
         </section>
     )
 }

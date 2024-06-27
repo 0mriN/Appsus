@@ -1,29 +1,30 @@
  /* note list */
-.note-list {
-    columns: 4 220px;
+ .note-list {
+     columns: 4 13.75rem;
+     column-gap: 0.8rem;
 
-    list-style-type: none;
-}
+     list-style-type: none;
+ }
 
-.note-list > article {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+ .note-list>article {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+     align-items: center;
 
-    height: max-content;
-    width: 240px; 
+     height: max-content;
+     width: 240px;
 
-    margin: 16px auto;
-    margin-top: 0;
-    break-inside: avoid;
+     margin: 16px auto;
+     margin-top: 0;
+     break-inside: avoid;
 
-    padding: 15px;
-    
-    border-radius: 8px;
-    outline: 1px solid rgb(185, 185, 185);
-}
+     padding: 15px;
 
-.note-list>article:hover {
-    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
-}
+     border-radius: 8px;
+     outline: 1px solid rgb(185, 185, 185);
+ }
+
+ .note-list>article:hover {
+     box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
+ }
