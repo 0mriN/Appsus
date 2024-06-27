@@ -7,6 +7,8 @@ _CreateNotes()
 export const noteService = {
     query,
     remove,
+    save,
+    getEmptyNote,
 }
 
 function query(filterBy = {}) {
@@ -19,6 +21,30 @@ function query(filterBy = {}) {
 
 function remove(noteId) {
     return storageService.remove(NOTE_KEY, noteId)
+}
+
+function save(note) {
+    if (note.id) {
+        return storageService.put(NOTE_KEY, note)
+    } else {
+        return storageService.post(NOTE_KEY, note)
+    }
+}
+
+function getEmptyNote(title = '', txt = '') {
+    return {
+        id: '',
+        createdAt: Date.now(),
+        type: 'NoteTxt',
+        isPinned: false,
+        style: {
+            backgroundColor: 'white'
+        },
+        info: {
+            title,
+            txt,
+        }
+    }
 }
 
 function _CreateNotes() {
