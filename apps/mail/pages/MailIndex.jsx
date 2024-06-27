@@ -1,16 +1,16 @@
+const {Link} = ReactRouterDOM
+
+import { MailFilter } from "../cmps/MailFilter.jsx";
 import { MailList } from "../cmps/MailList.jsx";
 import { mailService } from "../services/mail.service.js";
-import { MailDetails } from "./MailDetails.jsx";
 
 const { useEffect, useState } = React
 
 export function MailIndex() {
 
     const [mails, setMails] = useState(null)
-    const [filterBy, setFilterBy] = useState(mailService.getEmptyMail())
-    const [selectedMailId, setSelectedMailId] = useState(null)
-
-
+    const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+   
 
     useEffect(() => {
         loadMails()
@@ -26,31 +26,29 @@ export function MailIndex() {
             })
     }
 
-    function onRemoveMail(mailId) {
+    function onRemoveMail(ev,mailId) {
+        ev.stopPropagation()
+        ev.preventDefault()
         mailService.remove(mailId)
             .then(() => setMails(prevMails => mails.filter(mail => mail.id !== mailId)))
             .catch(err => {
-                console.log(`oops! looks like something went wrong in removing this book ${bookId}:`, err);
+                console.log(`oops! looks like something went wrong in removing this mail ${mailId}:`, err);
             })
     }
 
-function onSelectMailId(mail){
-    setSelectedMailId(mail)
-}
+    function onSetFilter(filterBy) {
+        setFilterBy({ ...filterBy })
+    }
+
 
     if (!mails) return <div>Loading...</div>
     return (
         <section className="mail-index">
-            {!selectedMailId ?
-                <React.Fragment>
-                    <MailList
-                     mails={mails}
-                     onRemoveMail={onRemoveMail}
-                     onSelectMailId={onSelectMailId} 
-                     />
-                </React.Fragment>
-                : <MailDetails />
-            }
+            <button><Link to="/mail/add">Compose</Link></button>
+            <MailFilter filterBy={filterBy} onSetFilter={onSetFilter}/>
+            <MailList
+                mails={mails}
+                onRemoveMail={onRemoveMail} />
         </section>
     )
 }

@@ -1,0 +1,15 @@
+.mail-add {
+    align-items: center;
+    margin-block-start: 30px;
+    padding: 20px;
+    background-color: rgba(180, 188, 204, 0.514);
+}
+
+.mail-add form {
+    display: grid;
+    /* grid-template-columns: 1fr; */
+    padding: 20px;
+    width: 400px;
+    gap: 10px;
+    margin-block-start: 20px;
+}
