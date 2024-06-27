@@ -3,5 +3,6 @@
     font-size: 18px;
     border-radius: 15px;
     display: grid;
-    /* grid: column 16em  */
+    grid-template-columns:16rem 97.5rem 3.5rem;
+   
 }

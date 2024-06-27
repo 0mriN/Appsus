@@ -2,17 +2,14 @@
  .mail-header {
     display: flex;
     align-content: start;
-    /* justify-content: space-between; */
     padding: 10px 3.15rem;
     font-size: 16px;
     line-height: 27px;
-    /* text-align: start; */
     gap:83px
 }
  .mail-header img {
     height: 3.69rem;
     width: 6.25rem;
-    background-color: white;
 }
 
 .mail-filter {
@@ -28,6 +25,7 @@
     font-size: x-large;
     align-self: center;
     background: #eaf1fb;
+    transform: translateX(20px)
 }
 
 .mail-add-btn  {
@@ -37,5 +35,11 @@
     background-color: #c2e7ff;
     font-family:'roboto';
     font-weight: bold;
+    cursor: pointer;
     /* background-color: black; */
+}
+
+.mail-options{
+    background: #f6f8fc;
+    padding:0 0 0 8px ;
 }
