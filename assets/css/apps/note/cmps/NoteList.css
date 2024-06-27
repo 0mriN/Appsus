@@ -1,6 +1,7 @@
  /* note list */
  .note-list {
      columns: 4 220px;
+     gap: 10px;
 
      list-style-type: none;
  }
