@@ -9,7 +9,7 @@ export function NoteIndex() {
 
     useEffect(() => {
         loadNotes()
-    }, [])
+    }, [notes])
 
     function loadNotes() {
         noteService.query()
@@ -18,12 +18,21 @@ export function NoteIndex() {
             })
     }
 
+    function removeNote(noteId) {
+        noteService.remove(noteId)
+            .then(() => {
+                setNotes(prevNotes => prevNotes.filter(note => noteId !== note.is))
+            })
+    }
 
     if (!notes) return <div>Loading...</div>
     return (
         <section className="note-index">
             <AddNote />
-            <NoteList notes={notes} />
+            <NoteList
+                notes={notes}
+                removeNote={removeNote}
+            />
         </section>
     )
 }

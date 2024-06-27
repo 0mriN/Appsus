@@ -6,14 +6,19 @@ _CreateNotes()
 
 export const noteService = {
     query,
+    remove,
 }
 
 function query(filterBy = {}) {
     return storageService.query(NOTE_KEY)
         .then(notes => {
-            console.log('notes:', notes)
+            // console.log('notes:', notes)
             return notes
         })
+}
+
+function remove(noteId) {
+    return storageService.remove(NOTE_KEY, noteId)
 }
 
 function _CreateNotes() {
