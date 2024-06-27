@@ -39,8 +39,8 @@ export function MailFilter({ filterBy, onSetFilter }) {
     return (
         <section className="mail-filter">
             <form>
-                <label htmlFor="from">Search</label>
-                <input value={from} onChange={handleChange} type="text" id="from" />
+                <label htmlFor="from" ></label>
+                <input value={from} onChange={handleChange} type="text" id="from" placeholder="Search   (From,Subject,Body...)" />
 
             </form>
 

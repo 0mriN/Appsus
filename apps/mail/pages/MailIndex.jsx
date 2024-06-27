@@ -1,4 +1,4 @@
-const {Link} = ReactRouterDOM
+const { Link } = ReactRouterDOM
 
 import { MailFilter } from "../cmps/MailFilter.jsx";
 import { MailList } from "../cmps/MailList.jsx";
@@ -10,7 +10,7 @@ export function MailIndex() {
 
     const [mails, setMails] = useState(null)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
-   
+
 
     useEffect(() => {
         loadMails()
@@ -26,7 +26,7 @@ export function MailIndex() {
             })
     }
 
-    function onRemoveMail(ev,mailId) {
+    function onRemoveMail(ev, mailId) {
         ev.stopPropagation()
         ev.preventDefault()
         mailService.remove(mailId)
@@ -43,12 +43,24 @@ export function MailIndex() {
 
     if (!mails) return <div>Loading...</div>
     return (
-        <section className="mail-index">
-            <button><Link to="/mail/add">Compose</Link></button>
-            <MailFilter filterBy={filterBy} onSetFilter={onSetFilter}/>
-            <MailList
-                mails={mails}
-                onRemoveMail={onRemoveMail} />
+        <section>
+            <header className="mail-header">
+            <img src="./assets/img/c-gmail-logo.png"></img>
+                <MailFilter filterBy={filterBy} onSetFilter={onSetFilter} className="mail-search" />
+
+            </header>
+            <section className="mail-index">
+                <div className="mail-options">
+                <button className="mail-add-btn">
+                    <Link to="/mail/add" >
+                    Compose
+                    </Link>
+                    </button>
+                </div>
+                <MailList
+                    mails={mails}
+                    onRemoveMail={onRemoveMail} />
+            </section>
         </section>
     )
 }

@@ -1,10 +1,12 @@
 const { Link, NavLink } = ReactRouterDOM
 
+
 export function AppHeader() {
 
     return <header className="app-header">
-        <Link to="/">
-            <h3>LOGO!</h3>
+        <Link to="/" className="logo animate__bounce">
+         <img src="./assets/img/susapp.png"></img>
+            <h1>Sus App</h1>
         </Link>
         <nav>
             <NavLink to="/">Home</NavLink>

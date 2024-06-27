@@ -1,0 +1,7 @@
+.mail-index {
+    font-family: 'roboto';
+    font-size: 18px;
+    border-radius: 15px;
+    display: grid;
+    /* grid: column 16em  */
+}
