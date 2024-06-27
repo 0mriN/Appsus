@@ -1,24 +1,37 @@
 header {
-    background: lightcyan;
-    border-bottom: 2px solid white;
+    background:#f6f8fc;
+    /* border-bottom: 2px solid white; */
+    font-size: 13px;
+    font-family: 'roboto';
+    font-weight:500;
+
 }
 
 .app-header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 8px 0;
+    line-height: 27px;
+}
+.app-header .logo {
+    display: flex;
+    align-items: center;
 }
 
+.app-header img {
+    height: 3.69rem;
+    background-color: white;
+}
+ 
+.app-header h1 {
+    font-size: 1.3rem;
+}
 nav a {
     margin: .5em;
-}
-
-nav a:active {
-    color: purple;
+    font-size: 1.5rem;
 }
 
 nav a.active {
-    color: darkblue;
-    font-weight: bold;
-    text-decoration: underline;
+    font-weight:900;
 }
