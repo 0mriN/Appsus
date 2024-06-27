@@ -51,11 +51,11 @@ export function MailIndex() {
             </header>
             <section className="mail-index">
                 <div className="mail-options">
+                <Link to="/mail/add" >
                 <button className="mail-add-btn">
-                    <Link to="/mail/add" >
                     Compose
-                    </Link>
                     </button>
+                    </Link>
                 </div>
                 <MailList
                     mails={mails}
