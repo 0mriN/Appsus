@@ -8,7 +8,9 @@ export const noteService = {
     query,
     remove,
     save,
+    get,
     getEmptyNote,
+    loadImageFromInput,
 }
 
 function query(filterBy = {}) {
@@ -19,11 +21,19 @@ function query(filterBy = {}) {
         })
 }
 
+function get(noteId) {
+    return storageService.get(NOTE_KEY, noteId)
+}
+
 function remove(noteId) {
     return storageService.remove(NOTE_KEY, noteId)
 }
 
 function save(note) {
+    const { info } = note
+    if (info.url) note.type = 'NoteImg'
+    else if (info.todos) note.type = 'NoteTodo'
+    else note.type = 'NoteTxt'
     if (note.id) {
         return storageService.put(NOTE_KEY, note)
     } else {
@@ -35,7 +45,7 @@ function getEmptyNote(title = '', txt = '') {
     return {
         id: '',
         createdAt: Date.now(),
-        type: 'NoteTxt',
+        type: '',
         isPinned: false,
         style: {
             backgroundColor: 'white'
@@ -45,6 +55,17 @@ function getEmptyNote(title = '', txt = '') {
             txt,
         }
     }
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+
+    reader.onload = ev => {
+        let img = new Image()
+        img.src = ev.target.result
+        img.onload = () => onImageReady(img)
+    }
+    reader.readAsDataURL(ev.target.files[0])
 }
 
 function _CreateNotes() {

@@ -6,7 +6,7 @@
      list-style-type: none;
  }
 
- .note-list>article {
+ .note-list .note-card {
      display: flex;
      flex-direction: column;
      justify-content: space-around;
@@ -25,6 +25,6 @@
      outline: 1px solid rgb(185, 185, 185);
  }
 
- .note-list>article:hover {
+ .note-list .note-card:hover {
      box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
  }

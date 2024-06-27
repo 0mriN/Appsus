@@ -1,0 +1,78 @@
+.note-edit {
+    /* position: fixed;
+    top: 37.5vh;
+    left: 30vw;
+    z-index: 10;
+    height: 25vh;
+    width: 40vw; */
+}
+
+.note-edit {
+    margin-block-end: 35px;
+}
+
+.note-edit .box-shadow {
+    box-shadow: 0px 1px 4px 3px rgba(0, 0, 0, 0.12);
+    width: max-content;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.note-edit input {
+    display: block;
+
+    margin: 0 auto;
+
+    width: 600px;
+    height: 45px;
+
+    padding-inline-start: 15px;
+}
+
+.note-edit input:focus {
+    outline: none;
+}
+
+.note-edit .note-edit-title {
+    border-top: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+    border-bottom: none;
+    border-radius: 8px;
+
+    /* box-shadow: 0px 1px 4px 3px rgba(0, 0, 0, 0.12); */
+}
+
+.note-edit .note-edit-txt {
+    border-top: none;
+    border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+    border-bottom: none;
+    /* box-shadow: 0px 1px 4px 3px rgba(0, 0, 0, 0.12); */
+
+}
+
+
+.note-edit .note-edit-btns {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0 auto;
+
+    width: 602px;
+    height: 45px;
+
+    padding-inline-start: 15px;
+
+    border-top: none;
+    border-bottom: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+
+    border-radius: 0px 0px 8px 8px;
+    /* box-shadow: 0px 1px 4px 3px rgba(0, 0, 0, 0.12); */
+}
+
+.note-edit.open .note-edit-title {
+    border-radius: 8px 8px 0px 0px;
+}
