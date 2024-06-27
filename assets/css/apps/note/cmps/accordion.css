@@ -1,5 +1,6 @@
 .accordion {
-    margin-block-end: 35px;
+    margin-block: 35px;
+    font-family: 'roboto';
 }
 
 .accordion .box-shadow {
@@ -62,6 +63,19 @@
 
     border-radius: 0px 0px 8px 8px;
     /* box-shadow: 0px 1px 4px 3px rgba(0, 0, 0, 0.12); */
+}
+
+.accordion .accordion-btns button{
+    height: 40px;
+
+    border-radius: 8px;
+
+    background-color: white;
+    border: none;
+}
+.accordion .accordion-btns button:hover{
+    background-color: #ceecff30;
+    
 }
 
 .accordion.open .accordion-title {

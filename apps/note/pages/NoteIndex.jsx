@@ -28,13 +28,18 @@ export function NoteIndex() {
 
     if (!notes) return <div>Loading...</div>
     return (
-        <section className="note-index">
-            {/* <AddNote /> */}
-            <Accordion />
-            <NoteList
-                notes={notes}
-                removeNote={removeNote}
-            />
-        </section>
+        <React.Fragment>
+            <header className="note-header">
+                <img src="./assets/img/keep-logo.png"></img>
+            </header>
+            <section className="note-index">
+                {/* <AddNote /> */}
+                <Accordion />
+                <NoteList
+                    notes={notes}
+                    removeNote={removeNote}
+                />
+            </section>
+        </React.Fragment>
     )
 }
