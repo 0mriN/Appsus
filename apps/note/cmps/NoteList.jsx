@@ -1,3 +1,5 @@
+const { Link, useSearchParams } = ReactRouterDOM
+
 import { NotePreview } from "./NotePreview.jsx";
 
 export function NoteList({ notes, removeNote }) {
@@ -5,12 +7,14 @@ export function NoteList({ notes, removeNote }) {
     return (
         <div className="note-list">
             {notes.map(note =>
-                <article key={note.id} style={note.style}>
-                    <NotePreview 
-                    note={note} 
-                    removeNote={removeNote}
-                    />
-                </article>
+                <Link key={note.id} to={`/note/edit/${note.id}`}>
+                    <article className="note-card" style={note.style}>
+                        <NotePreview
+                            note={note}
+                            removeNote={removeNote}
+                        />
+                    </article>
+                </Link>
             )}
         </div>
     )

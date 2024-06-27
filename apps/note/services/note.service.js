@@ -8,6 +8,7 @@ export const noteService = {
     query,
     remove,
     save,
+    get,
     getEmptyNote,
     loadImageFromInput,
 }
@@ -18,6 +19,10 @@ function query(filterBy = {}) {
             // console.log('notes:', notes)
             return notes
         })
+}
+
+function get(noteId) {
+    return storageService.get(NOTE_KEY, noteId)
 }
 
 function remove(noteId) {
