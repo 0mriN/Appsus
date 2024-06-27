@@ -58,7 +58,9 @@
 
 .right-symbols {
     opacity: 0;
-    transform: translateX(0)
+    transform: translateX(0);
+    /* pointer-events: none; */
+    z-index: 20;
 }
 
 

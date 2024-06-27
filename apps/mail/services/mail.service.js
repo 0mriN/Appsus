@@ -23,23 +23,32 @@ export const mailService = {
     get,
     remove,
     save,
-    getEmptyMail,
+    getDefaultFilter,
     // getFilterBy,
     // setFilterBy,
+    getNextMailId,
+    getPrevMailId,
+    getEmptyMail,
 
 }
 
-function query(gFilterBy = {}) {
+function query(filterBy = {}) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
-            if (gFilterBy.status) {
-                const regex = new RegExp(gFilterBy.status, 'i')
-                mails = mails.filter(mail => regex.test(mail.status))
+            let mailsToDisplay = [...mails]
+            if (filterBy.from) {
+                const regex = new RegExp(filterBy.from, 'i')
+                mailsToDisplay = mails.filter(mail => regex.test(mail.from))
             }
-            if (gFilterBy.sentAt) {
-                mails = mails.filter(mail => mail.sentAt >= gFilterBy.sentAt)
+            if (filterBy.subject && !mailsToDisplay.length) {
+                const regex = new RegExp(filterBy.subject, 'i')
+                mailsToDisplay = mails.filter(mail => regex.test(mail.subject))
             }
-            return mails
+            if(filterBy.body && !mailsToDisplay.length) {
+                const regex = new RegExp(filterBy.body, 'i')
+                mailsToDisplay = mails.filter(mail => regex.test(mail.body))
+            }
+            return mailsToDisplay
         })
 }
 
@@ -59,30 +68,67 @@ function save(mail) {
     }
 }
 
-function getEmptyMail(id = '', subject = '', body = '', 
-    emailAdress =['momo@momo.com', 'puki@puki.com', 'muki@muki.com', 'Netflix', 'YouTube', 'Amazom Prime'],
-     timeStamps=[1719421615, 1719421595, 1687788395000, 1590501995000, 1719410795000, 1719389495000, 1707988295000, 1713287495000, 1719378695000]) {
-    
-    return {
+// const gFilterBy = {
+//     status: 'inbox/sent/trash/draft',
+//     txt: 'puki',
+//     isRead: true,
+//     isStared: true,
+//     lables: ['important', 'romantic']
+// }
+// function getDefaultFilter(filterBy = {subject: '',from: '', to:'', status: '', body:'',isRead: '', isStared:'',lables:['']} ) {
 
-        id: utilService.makeId(),
-        createdAt: 1551133930500, // new Date(),
-        subject: utilService.makeLorem(2),
-        body: utilService.makeLorem(8),
-        isRead: false,
-        sentAt: timeStamps[utilService.getRandomIntInclusive(0, timeStamps.length - 1)],
-        removedAt: null,
-        from: emailAdress[utilService.getRandomIntInclusive(0, emailAdress.length - 1)],
-        to: 'user@appsus.co'
+
+function getDefaultFilter(filterBy = { subject: '', from: '', to: '', status: '', body: '', isRead: '', isStared: '', lables: [''] }) {
+    return {
+        subject: filterBy.subject,
+        body: filterBy.body,
+        isRead: filterBy.isRead,
+        from: filterBy.from,
+        to: filterBy.to,
+        status: filterBy.status,
+        isStared: filterBy.isStared,
+        labels: filterBy.lables
 
     }
+}
+
+function getEmptyMail(to ='', subject = '', body = ''){
+
+    return {
+        from: (`${loggedinUser.email} , ${loggedinUser.fullname}`),
+        createdAt: new Date(),
+        subject,
+        body,
+        isRead: false,
+        sentAt: new Date(),
+        removedAt: null,
+        to
+
+    }
+}
+
+function getNextMailId(mailId) {
+    return storageService.query(MAIL_KEY)
+        .then(mails => {
+            let nextMailIdx = mails.findIndex(mail => mail.id === mailId) + 1
+            if (nextMailIdx === mails.length) nextMailIdx = 0
+            return mails[nextMailIdx].id
+        })
+}
+function getPrevMailId(mailId) {
+    return storageService.query(MAIL_KEY)
+        .then(mails => {
+            let currentMailIdx = mails.findIndex(mail => mail.id === mailId)
+            let prevMailIdx = (currentMailIdx - 1 + mails.length) % mails.length
+            return mails[prevMailIdx].id
+        })
 }
 
 function _createMails() {
     let mails = storageService.loadFromStorage(MAIL_KEY)
     const emailAdress = ['momo@momo.com', 'puki@puki.com', 'muki@muki.com', 'Netflix', 'YouTube', 'Amazom Prime']
     const timeStamps = [1719421615, 1719421595, 1687788395000, 1590501995000, 1719410795000, 1719389495000, 1707988295000, 1713287495000, 1719378695000]
-    if (!mails || mails.length) {
+    if (!mails || !mails.length) {
         mails = []
         for (let i = 0; i < 10; i++) {
             const mail =
