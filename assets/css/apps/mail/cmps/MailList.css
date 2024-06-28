@@ -4,4 +4,39 @@
      list-style: none;
      padding: 15px 0 0;
      display: grid;
+     /* width:100%; */
+    }
+    
+    .mail-list-container {
+        overflow-y: auto;
+        max-height: calc(100vh - 150px);
+        /* scrollbar-width:thin;
+        scrollbar-color:#ccc transparent; */
+ }
+
+ .mail-list-container::-webkit-scrollbar {
+    width: 1rem;
+    
+ }
+
+ .mail-list-container::-webkit-scrollbar-track {
+    background: transparent;
+ }
+
+ .mail-list-container::-webkit-scrollbar-thumb {
+    background-color: #ccc; 
+   
+ }
+
+ .mail-list-container::-webkit-scrollbar-button {
+    display: none; 
+ }
+
+
+ .mail-list-container::-webkit-scrollbar:hover {
+    background-color: rgb(230, 221, 221);
+ }
+
+ .mail-list-container::-webkit-scrollbar-thumb:hover {
+    background-color: #bebebe; 
  }

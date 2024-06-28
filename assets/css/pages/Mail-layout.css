@@ -1,9 +1,14 @@
+body {
+    background: #f6f8fc;
+    overflow-y: hidden;
+}
+
 .mail-index {
     font-family: 'roboto';
     font-size: 18px;
     border-radius: 15px;
     display: grid;
-    grid-template-columns: 16rem 97.5rem 3.5rem;
+    grid-template-columns: 16rem 1fr;
 }
 
 .nav-symbols {

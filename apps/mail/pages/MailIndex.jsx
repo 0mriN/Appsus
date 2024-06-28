@@ -57,15 +57,17 @@ export function MailIndex() {
                         </button>
                     </Link>
                 </div>
+                <div className="mail-list-container">
                 <MailList
                     mails={mails}
                     onRemoveMail={onRemoveMail} />
-                <div className="nav-symbols">
-                    <span class="material-symbols-outlined calendar">calendar_month</span>
-                    <span class="material-symbols-outlined notes">batch_prediction</span>
-                    <span class="material-symbols-outlined task">task_alt</span>
-                    <span class="material-symbols-outlined contact">contacts_product</span>
-                </div>
+                    </div>
+                {/* <div className="nav-symbols">
+                    <span className="material-symbols-outlined calendar">calendar_month</span>
+                    <span className="material-symbols-outlined notes">batch_prediction</span>
+                    <span className="material-symbols-outlined task">task_alt</span>
+                    <span className="material-symbols-outlined contact">contacts_product</span>
+                </div> */}
             </section>
         </section>
     )
