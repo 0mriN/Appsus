@@ -1,3 +1,5 @@
+import { LongTxt } from "../../../cmps/LongTxt.jsx"
+
 export function MailPreview({ mail, onRemoveMail }) {
     let date
 
@@ -15,14 +17,15 @@ export function MailPreview({ mail, onRemoveMail }) {
 
 
     return (
-        <section className="mail-preview ">
-            <span className="material-symbols-outlined">check_box_outline_blank</span>
+        <section className="mail-preview space-between">
+            <span className="material-symbols-outlined checkbox">check_box_outline_blank</span>
             {/* <span class="material-symbols-outlined">check_box</span> */}
-            <span className="material-symbols-outlined">grade</span>
-            <span className="material-symbols-outlined">label_important</span>
+            <span className="material-symbols-outlined star">grade</span>
+            <span className="material-symbols-outlined important">label_important</span>
             <h3>{mail.from}</h3>
-            <h3 className="subject">{mail.subject}</h3>
-            <p className="subject">{mail.body}</p>
+            <h3 className="subject">{`${mail.subject} -`}</h3>
+            <LongTxt txt ={mail.body} />
+            {/* <p className="subject">{mail.body}</p> */}
             <span className="material-symbols-outlined archive right-symbols">archive</span>
             <span onClick={(event) => onRemoveMail(event, mail.id)} className="material-symbols-outlined delete right-symbols">delete</span>
             <span className="material-symbols-outlined unread right-symbols">mark_email_unread</span>

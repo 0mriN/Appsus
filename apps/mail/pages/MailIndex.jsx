@@ -56,12 +56,34 @@ export function MailIndex() {
                             Compose
                         </button>
                     </Link>
+                    <div className="nav-options">
+                        <p>
+                            <span className="material-symbols-outlined">inbox</span>
+                            Inbox
+                        </p>
+                        <p>
+                            <span className="material-symbols-outlined">grade</span>
+                            Starred
+                        </p>
+                        <p>
+                            <span className="material-symbols-outlined">label_important</span>
+                            Important
+                        </p>
+                        <p>
+                            <span className="material-symbols-outlined">send</span>
+                            Sent
+                        </p>
+                        <p>
+                            <span className="material-symbols-outlined">draft</span>
+                            Drafts
+                        </p>
+                    </div>
                 </div>
                 <div className="mail-list-container">
-                <MailList
-                    mails={mails}
-                    onRemoveMail={onRemoveMail} />
-                    </div>
+                    <MailList
+                        mails={mails}
+                        onRemoveMail={onRemoveMail} />
+                </div>
                 {/* <div className="nav-symbols">
                     <span className="material-symbols-outlined calendar">calendar_month</span>
                     <span className="material-symbols-outlined notes">batch_prediction</span>
