@@ -31,6 +31,7 @@
  }
 
  .mail-add-btn {
+    display: flex;
      width: 7.375rem;
      height: 3.7rem;
      border-radius: 16px;
@@ -39,6 +40,7 @@
      font-weight: bold;
      cursor: pointer;
      border: 0px;
+     align-items: center;
  }
 
  .mail-add-btn:hover {

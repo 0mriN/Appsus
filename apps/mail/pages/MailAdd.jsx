@@ -1,4 +1,5 @@
 import { mailService } from "../services/mail.service.js"
+import { showSuccessMsg,showErrorMsg } from "../../../services/event-bus.service.js";
 const { useNavigate, Link } = ReactRouterDOM
 const { useState } = React
 // const { Link } = ReactRouterDOM
@@ -12,10 +13,13 @@ export function MailAdd() {
         ev.preventDefault()
         mailService.save(addMail)
             .then(() => {
-                console.log('Mail Sent!')
+                showSuccessMsg('Mail Sent Successfully!')
                 navigate('/mail')
             })
-            .catch(err => console.log('err:', err))
+            .catch(err => {
+                console.log(`oops! looks like something went wrong in sending this mail ${mailId}:`, err);
+                showErrorMsg('Having trouble sending this mail')
+            })
 
     }
 
@@ -29,7 +33,7 @@ export function MailAdd() {
 
     return (
         <section className="mail-add">
-            <Link to="/mail"><span className="material-symbols-outlined arrow-back">arrow_back</span></Link>
+            <Link to="/mail"><span className="material-symbols-outlined arrow-back" title="Back">arrow_back</span></Link>
             <h1>New Mail</h1>
             <form onSubmit={onSaveMail}>
                 <label htmlFor="to">To</label>

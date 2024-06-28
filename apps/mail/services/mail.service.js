@@ -24,8 +24,6 @@ export const mailService = {
     remove,
     save,
     getDefaultFilter,
-    // getFilterBy,
-    // setFilterBy,
     getNextMailId,
     getPrevMailId,
     getEmptyMail,
@@ -85,7 +83,7 @@ function getDefaultFilter(filterBy = { subject: '', from: '', to: '', status: ''
 function getEmptyMail(to = '', subject = '', body = '') {
 
     return {
-        from: (`${loggedinUser.email} , ${loggedinUser.fullname}`),
+        from: (`${loggedinUser.fullname}`),
         createdAt: new Date(),
         subject,
         body,

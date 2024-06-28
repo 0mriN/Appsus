@@ -1,5 +1,6 @@
 const { Link } = ReactRouterDOM
 
+import { showSuccessMsg,showErrorMsg } from "../../../services/event-bus.service.js";
 import { MailFilter } from "../cmps/MailFilter.jsx";
 import { MailList } from "../cmps/MailList.jsx";
 import { mailService } from "../services/mail.service.js";
@@ -30,9 +31,13 @@ export function MailIndex() {
         ev.stopPropagation()
         ev.preventDefault()
         mailService.remove(mailId)
-            .then(() => setMails(prevMails => mails.filter(mail => mail.id !== mailId)))
+            .then(() => {
+                setMails(prevMails => mails.filter(mail => mail.id !== mailId))
+                showSuccessMsg(`The Mail Removed Succesfuly`)
+            })
             .catch(err => {
                 console.log(`oops! looks like something went wrong in removing this mail ${mailId}:`, err);
+                showErrorMsg('Having trouble removing this mail')
             })
     }
 
@@ -53,6 +58,7 @@ export function MailIndex() {
                 <div className="mail-options">
                     <Link to="/mail/add" >
                         <button className="mail-add-btn">
+                            <span className="material-symbols-outlined">edit</span>
                             Compose
                         </button>
                     </Link>

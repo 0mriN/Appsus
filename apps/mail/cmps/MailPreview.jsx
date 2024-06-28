@@ -23,7 +23,7 @@ export function MailPreview({ mail, onRemoveMail }) {
             <span className="material-symbols-outlined star">grade</span>
             <span className="material-symbols-outlined important">label_important</span>
             <h3>{mail.from}</h3>
-            <h3 className="subject">{`${mail.subject} -`}</h3>
+            <h3 className="subject">{`${mail.subject}`}</h3>
             <LongTxt txt ={mail.body} />
             {/* <p className="subject">{mail.body}</p> */}
             <span className="material-symbols-outlined archive right-symbols">archive</span>

@@ -10,6 +10,7 @@ import { MailDetails } from "./apps/mail/pages/MailDetails.jsx"
 import { MailAdd } from "./apps/mail/pages/MailAdd.jsx"
 import { Accordion } from "./apps/note/cmps/Accordion.jsx"
 import { NoteEdit } from "./apps/note/cmps/NoteEdit.jsx"
+import { UserMsg } from "./cmps/UserMsg.jsx"
 
 
 
@@ -26,6 +27,7 @@ export function App() {
                 <Route path="/note/edit/:noteId" element={<NoteEdit />} />
                 <Route path="/mail/add" element={<MailAdd />} />
             </Routes>
+            <UserMsg />
         </section>
     </Router>
 }

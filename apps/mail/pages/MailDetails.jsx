@@ -1,8 +1,9 @@
-const { useParams, Link } = ReactRouterDOM
+const { useParams, Link,useNavigate } = ReactRouterDOM
 
 
 import { mailService } from "../services/mail.service.js"
 import { MailIndex } from "./MailIndex.jsx"
+import { showErrorMsg,showSuccessMsg } from "../services/event-bus.service.js"
 
 const { useEffect, useState } = React
 
@@ -10,14 +11,41 @@ export function MailDetails() {
 
     const [mail, setMail] = useState(null)
     const { mailId } = useParams()
+    const [nextMailId, setNextMailId] = useState()
+    const [prevMailId, setPrevMailId] = useState()
+    const navigate = useNavigate()
 
     useEffect(() => {
         mailService.get(mailId)
             .then(mail => {
                 setMail(mail)
 
+                mailService.getNextMailId(mailId)
+                    .then(nextId => setNextMailId(nextId))
+
+                mailService.getPrevMailId(mailId)
+                    .then(prevId => setPrevMailId(prevId))
             })
-    })
+            .catch(err => {
+                console.log('Error fetching mail details:', err)
+                showErrorMsg('Failed to load mail details')
+            })
+    },[mailId])
+
+    function onRemoveMail(ev, mailId) {
+        ev.stopPropagation()
+        ev.preventDefault()
+        mailService.remove(mailId)
+            .then(() => {
+                navigate('/mail')
+                setMail(prevMails => mails.filter(mail => mail.id !== mailId))
+                showSuccessMsg(`The Mail Removed Succesfuly`)
+            })
+            .catch(err => {
+                console.log(`oops! looks like something went wrong in removing this mail ${mailId}:`, err);
+                showErrorMsg('Having trouble removing this mail')
+            })
+    }
 
     if (!mail) return <div>Loading ....</div>
     return (
@@ -26,16 +54,16 @@ export function MailDetails() {
                 <div className="symbol-container-left">
                     <Link to="/mail"><span className="material-symbols-outlined arrow-back">arrow_back</span></Link>
                     <span className="material-symbols-outlined archive">archive</span>
-                    <span className="material-symbols-outlined report">report</span>
-                    <span onClick={(event) => onRemoveMail(event, mail.id)} className="material-symbols-outlined delete">delete</span>
+                    <span className="material-symbols-outlined report" title ="Report this mail">report</span>
+                    <span onClick={(event) => onRemoveMail(event, mail.id)} className="material-symbols-outlined delete" title ="Delete mail">delete</span>
                 </div>
                 <div className="symbol-container-right">
-                    <span className="material-symbols-outlined unread">mark_email_unread</span>
-                    <span className="material-symbols-outlined move-to">drive_file_move</span>
+                    <span className="material-symbols-outlined unread" title ="Unread">mark_email_unread</span>
+                    <span className="material-symbols-outlined move-to"title ="Move to">drive_file_move</span>
                 </div>
                 <div>
-                    <span className="material-symbols-outlined prev-mail">arrow_back_ios</span>
-                    <span className="material-symbols-outlined next-mail">arrow_forward_ios</span>
+                <Link to={`/mail/${prevMailId}`} title ="Previous Mail"><span className="material-symbols-outlined prev-mail">arrow_back_ios</span></Link>
+                <Link to={`/mail/${nextMailId}`} title ="Next Mail"><span className="material-symbols-outlined next-mail">arrow_forward_ios</span></Link>
                 </div>
             </div>
             <h2>{mail.subject}</h2>
