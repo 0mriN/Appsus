@@ -52,7 +52,7 @@ export function Accordion() {
     }
 
     return (
-        <section className={`accordion open ${openClass}`}>
+        <section className={`accordion ${openClass}`}>
             <div className="box-shadow">
                 <section onClick={onOpenAccordion} className="title-container" >
                     <img

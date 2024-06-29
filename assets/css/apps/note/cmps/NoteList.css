@@ -2,6 +2,10 @@
      columns: 4 13.75rem;
 
      list-style-type: none;
+
+     padding: 10px;
+
+     font-family: 'roboto';
  }
 
  .note-list .note-card {
