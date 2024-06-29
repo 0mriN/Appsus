@@ -50,6 +50,10 @@ function query(filterBy = {}) {
                 const regex = new RegExp(filterBy.body, 'i')
                 mailsToDisplay = mails.filter(mail => regex.test(mail.body))
             }
+            if (filterBy.to && !mailsToDisplay.length){
+                const regex = new RegExp(filterBy.to, 'i')
+                mailsToDisplay = mails.filter(mail => regex.test(mail.to))
+            }
             return mailsToDisplay
         })
 }

@@ -1,14 +1,37 @@
 .mail-add {
     align-items: center;
+    justify-items: center;
     margin-block-start: 30px;
     padding: 20px;
     background-color: rgba(180, 188, 204, 0.514);
+    font-family: 'roboto';
 }
 
 .mail-add form {
     display: grid;
+
     padding: 20px;
     width: 400px;
     gap: 10px;
     margin-block-start: 20px;
+    /* text-align: start; */
+}
+
+.mail-add textarea {
+    resize: vertical; 
+    font-size: 1em;
+    line-height: 1.5;
+    padding: 10px;
+    border-radius: 15px;
+    border:0px
+}
+
+.mail-add input,button {
+    border-radius: 15px;
+    border:0px
+}
+
+.mail-add .form {
+   display: flex;
+   justify-content: center;
 }

@@ -96,11 +96,15 @@ export function MailDetails() {
                     <Link to={`/mail/${nextMailId}`} title="Next Mail"><span className="material-symbols-outlined next-mail">arrow_forward_ios</span></Link>
                 </div>
             </div>
+            <div className="mail-details">
             <h2>{mail.subject}</h2>
+            <div className="flex space-between">
             <h3>{`from:${mail.from}`}</h3>
-            <h5>{`to: ${mail.to}`}</h5>
             <h5>{`sent at:  ${mail.sentAt}`}</h5>
+            </div>
+            <h5>{`to: ${mail.to}`}</h5>
             <p>{mail.body}</p>
+            </div>
 
 
         </section>

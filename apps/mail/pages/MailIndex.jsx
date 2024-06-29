@@ -101,6 +101,7 @@ export function MailIndex() {
             })
     }
     console.log('mails:', mails);
+    console.log('filterBy:', filterBy);
 
     if (!mails) return <div>Loading...</div>
     return (

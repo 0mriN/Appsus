@@ -1,5 +1,5 @@
 import { mailService } from "../services/mail.service.js"
-import { showSuccessMsg,showErrorMsg } from "../../../services/event-bus.service.js";
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js";
 const { useNavigate, Link } = ReactRouterDOM
 const { useState } = React
 // const { Link } = ReactRouterDOM
@@ -35,18 +35,22 @@ export function MailAdd() {
         <section className="mail-add">
             <Link to="/mail"><span className="material-symbols-outlined arrow-back" title="Back">arrow_back</span></Link>
             <h1>New Mail</h1>
-            <form onSubmit={onSaveMail}>
-                <label htmlFor="to">To</label>
-                <input onChange={handleChange} value={to} type="text" name="to" id="to" />
+            <div className="form">
 
-                <label htmlFor="subject">Subject</label>
-                <input onChange={handleChange} value={subject} type="text" name="subject" id="subject" />
-                <textarea onChange={handleChange} value={body} name="body" id="body">
+                <form onSubmit={onSaveMail}>
+                    <label htmlFor="to">To</label>
+                    <input onChange={handleChange} value={to} type="text" name="to" id="to" />
 
-                </textarea>
-                <button>Send</button>
+                    <label htmlFor="subject">Subject</label>
+                    <input onChange={handleChange} value={subject} type="text" name="subject" id="subject" />
+                    <textarea onChange={handleChange} value={body} name="body"
+                        id="body" rows={10} style={{ height: "15rem" }}>
 
-            </form>
+                    </textarea>
+                    <button>Send</button>
+
+                </form>
+            </div>
 
 
 

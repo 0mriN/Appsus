@@ -30,7 +30,7 @@ export function MailFilter({ filterBy, onSetFilter }) {
             default:
                 break
         }
-        setFilterByToEdit(prevFilter => ({ ...prevFilter, from: value, subject: value, body: value }))
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, from: value, subject: value, body: value, to:value}))
     }
 
     const { from } = filterByToEdit
@@ -40,7 +40,7 @@ export function MailFilter({ filterBy, onSetFilter }) {
         <section className="mail-filter">
             <form>
                 <label htmlFor="from" ></label>
-                <input value={from} onChange={handleChange} type="text" id="from" placeholder="Search   (From,Subject,Body...)" />
+                <input value={from} onChange={handleChange} type="text" id="from" placeholder="Search   (From,To,Subject,Body...)" />
 
             </form>
 
