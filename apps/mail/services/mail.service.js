@@ -27,6 +27,8 @@ export const mailService = {
     getNextMailId,
     getPrevMailId,
     getEmptyMail,
+    markAsRead,
+    markAsUnread,
 
 }
 
@@ -109,6 +111,26 @@ function getPrevMailId(mailId) {
             let currentMailIdx = mails.findIndex(mail => mail.id === mailId)
             let prevMailIdx = (currentMailIdx - 1 + mails.length) % mails.length
             return mails[prevMailIdx].id
+        })
+}
+
+function markAsRead(mailId) {
+    return storageService.get(MAIL_KEY, mailId)
+        .then(mail => {
+            if (mail) {
+                mail.isRead = true;
+                return storageService.put(MAIL_KEY, mail)
+            }
+        })
+}
+
+function markAsUnread(mailId) {
+    return storageService.get(MAIL_KEY, mailId)
+        .then(mail => {
+            if (mail) {
+                mail.isRead = false
+                return storageService.put(MAIL_KEY, mail)
+            }
         })
 }
 

@@ -88,3 +88,7 @@
     transition: transform 0.5s;
     transform: translateX(70px);
 }
+
+.unread-mail {
+    background-color: #eaf1fb;
+}

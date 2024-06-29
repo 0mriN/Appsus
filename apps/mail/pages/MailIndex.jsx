@@ -1,6 +1,6 @@
 const { Link } = ReactRouterDOM
 
-import { showSuccessMsg,showErrorMsg } from "../../../services/event-bus.service.js";
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js";
 import { MailFilter } from "../cmps/MailFilter.jsx";
 import { MailList } from "../cmps/MailList.jsx";
 import { mailService } from "../services/mail.service.js";
@@ -45,6 +45,33 @@ export function MailIndex() {
         setFilterBy({ ...filterBy })
     }
 
+    function onMarkAsRead(mailId) {
+        mailService.markAsRead(mailId)
+            .then(() => {
+                setMails(prevMails =>
+                    prevMails.map(mail =>
+                        mail.id === mailId ? { ...mail, isRead: true } : mail
+                    )
+                )
+            })
+            .catch(err => {
+                console.log('err:', err)
+            })
+    }
+
+    function onMarkAsUnread(mailId) {
+        mailService.markAsUnread(mailId)
+            .then(() => {
+                setMails(prevMails =>
+                    prevMails.map(mail =>
+                        mail.id === mailId ? { ...mail, isRead: false } : mail
+                    )
+                )
+            })
+            .catch(err => {
+                console.error('Error marking mail as unread:', err)
+            })
+    }
 
     if (!mails) return <div>Loading...</div>
     return (
@@ -88,7 +115,10 @@ export function MailIndex() {
                 <div className="mail-list-container">
                     <MailList
                         mails={mails}
-                        onRemoveMail={onRemoveMail} />
+                        onRemoveMail={onRemoveMail} 
+                        onMarkAsRead={onMarkAsRead}
+                        onMarkAsUnread={onMarkAsUnread}
+                        />
                 </div>
                 {/* <div className="nav-symbols">
                     <span className="material-symbols-outlined calendar">calendar_month</span>

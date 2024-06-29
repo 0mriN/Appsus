@@ -1,9 +1,9 @@
-const { useParams, Link,useNavigate } = ReactRouterDOM
+const { useParams, Link, useNavigate } = ReactRouterDOM
 
 
 import { mailService } from "../services/mail.service.js"
-import { MailIndex } from "./MailIndex.jsx"
-import { showErrorMsg,showSuccessMsg } from "../services/event-bus.service.js"
+// import { MailIndex } from "./MailIndex.jsx"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
 const { useEffect, useState } = React
 
@@ -30,7 +30,7 @@ export function MailDetails() {
                 console.log('Error fetching mail details:', err)
                 showErrorMsg('Failed to load mail details')
             })
-    },[mailId])
+    }, [mailId])
 
     function onRemoveMail(ev, mailId) {
         ev.stopPropagation()
@@ -47,6 +47,32 @@ export function MailDetails() {
             })
     }
 
+    function onMarkAsRead() {
+        if (!mail.isRead) {
+            mailService.markAsRead(mailId)
+                .then(() => {
+                    setMail(prevMail => ({ ...prevMail, isRead: true }))
+                })
+                .catch(err => {
+                    console.error('Error marking mail as read:', err)
+                    
+                })
+        }
+    }
+
+    function onMarkAsUnread() {
+        if (mail.isRead) {
+            mailService.markAsUnread(mailId)
+                .then(() => {
+                    setMail(prevMail => ({ ...prevMail, isRead: false }))
+                })
+                .catch(err => {
+                    console.error('Error marking mail as unread:', err)
+                    
+                })
+        }
+    }
+
     if (!mail) return <div>Loading ....</div>
     return (
         <section>
@@ -54,16 +80,20 @@ export function MailDetails() {
                 <div className="symbol-container-left">
                     <Link to="/mail"><span className="material-symbols-outlined arrow-back">arrow_back</span></Link>
                     <span className="material-symbols-outlined archive" title="Archive">archive</span>
-                    <span className="material-symbols-outlined report" title ="Report this mail">report</span>
-                    <span onClick={(event) => onRemoveMail(event, mail.id)} className="material-symbols-outlined delete" title ="Delete mail">delete</span>
+                    <span className="material-symbols-outlined report" title="Report this mail">report</span>
+                    <span onClick={(event) => onRemoveMail(event, mail.id)} className="material-symbols-outlined delete" title="Delete mail">delete</span>
                 </div>
                 <div className="symbol-container-right">
-                    <span className="material-symbols-outlined unread" title ="Unread">mark_email_unread</span>
-                    <span className="material-symbols-outlined move-to"title ="Move to">drive_file_move</span>
+                {mail.isRead ? (
+                        <span className="material-symbols-outlined unread" title="Mark as unread" onClick={onMarkAsUnread}>mark_email_unread</span>
+                    ) : (
+                        <span className="material-symbols-outlined read" title="Mark as read" onClick={onMarkAsRead}>mark_email_read</span>
+                    )}
+                    <span className="material-symbols-outlined move-to" title="Move to">drive_file_move</span>
                 </div>
                 <div>
-                <Link to={`/mail/${prevMailId}`} title ="Previous Mail"><span className="material-symbols-outlined prev-mail">arrow_back_ios</span></Link>
-                <Link to={`/mail/${nextMailId}`} title ="Next Mail"><span className="material-symbols-outlined next-mail">arrow_forward_ios</span></Link>
+                    <Link to={`/mail/${prevMailId}`} title="Previous Mail"><span className="material-symbols-outlined prev-mail">arrow_back_ios</span></Link>
+                    <Link to={`/mail/${nextMailId}`} title="Next Mail"><span className="material-symbols-outlined next-mail">arrow_forward_ios</span></Link>
                 </div>
             </div>
             <h2>{mail.subject}</h2>
