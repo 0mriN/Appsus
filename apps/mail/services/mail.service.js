@@ -29,6 +29,8 @@ export const mailService = {
     getEmptyMail,
     markAsRead,
     markAsUnread,
+    markAsStarred,
+    markAsUnstarred,
 
 }
 
@@ -68,7 +70,7 @@ function save(mail) {
     }
 }
 
-function getDefaultFilter(filterBy = { subject: '', from: '', to: '', status: '', body: '', isRead: '', isStared: '', lables: [''] }) {
+function getDefaultFilter(filterBy = { subject: '', from: '', to: '', status: '', body: '', isRead: '', isStarred: '', lables: [''] }) {
     return {
         subject: filterBy.subject,
         body: filterBy.body,
@@ -76,7 +78,7 @@ function getDefaultFilter(filterBy = { subject: '', from: '', to: '', status: ''
         from: filterBy.from,
         to: filterBy.to,
         status: filterBy.status,
-        isStared: filterBy.isStared,
+        isStarred: filterBy.isStarred,
         labels: filterBy.lables
 
     }
@@ -118,7 +120,7 @@ function markAsRead(mailId) {
     return storageService.get(MAIL_KEY, mailId)
         .then(mail => {
             if (mail) {
-                mail.isRead = true;
+                mail.isRead = true
                 return storageService.put(MAIL_KEY, mail)
             }
         })
@@ -129,6 +131,29 @@ function markAsUnread(mailId) {
         .then(mail => {
             if (mail) {
                 mail.isRead = false
+                return storageService.put(MAIL_KEY, mail)
+            }
+        })
+}
+
+function markAsStarred(mailId) {
+    return storageService.get(MAIL_KEY, mailId)
+        .then(mail => {
+            if (mail) {
+                mail.isStarred = true
+                console.log('starred from service');
+                return storageService.put(MAIL_KEY, mail)
+            }
+        })
+}
+
+function markAsUnstarred(mailId) {
+    return storageService.get(MAIL_KEY, mailId)
+        .then(mail => {
+            if (mail) {
+                mail.isStarred = false
+                console.log('unstarred from service');
+
                 return storageService.put(MAIL_KEY, mail)
             }
         })
@@ -148,6 +173,7 @@ function _createMails() {
                 subject: utilService.makeLorem(2),
                 body: utilService.makeLorem(8),
                 isRead: false,
+                isStarred:false,
                 sentAt: timeStamps[utilService.getRandomIntInclusive(0, timeStamps.length - 1)],
                 removedAt: null,
                 from: emailAdress[utilService.getRandomIntInclusive(0, emailAdress.length - 1)],

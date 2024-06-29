@@ -73,6 +73,35 @@ export function MailIndex() {
             })
     }
 
+    function onMarkAsStarred(mailId) {
+        mailService.markAsStarred(mailId)
+            .then(() => {
+                setMails(prevMails =>
+                    prevMails.map(mail =>
+                        mail.id === mailId ? { ...mail, isStarred: true } : mail
+                    )
+                )
+            })
+            .catch(err => {
+                console.log('err:', err)
+            })
+    }
+
+    function onMarkAsUnstarred(mailId) {
+        mailService.markAsUnstarred(mailId)
+            .then(() => {
+                setMails(prevMails =>
+                    prevMails.map(mail =>
+                        mail.id === mailId ? { ...mail, isStarred: false } : mail
+                    )
+                )
+            })
+            .catch(err => {
+                console.error('Error marking mail as unstarred:', err)
+            })
+    }
+    console.log('mails:', mails);
+
     if (!mails) return <div>Loading...</div>
     return (
         <section>
@@ -118,6 +147,8 @@ export function MailIndex() {
                         onRemoveMail={onRemoveMail} 
                         onMarkAsRead={onMarkAsRead}
                         onMarkAsUnread={onMarkAsUnread}
+                        onMarkAsStarred={onMarkAsStarred}
+                        onMarkAsUnstarred={onMarkAsUnstarred}
                         />
                 </div>
                 {/* <div className="nav-symbols">
