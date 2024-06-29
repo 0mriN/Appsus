@@ -55,7 +55,7 @@ export function MailDetails() {
                 })
                 .catch(err => {
                     console.error('Error marking mail as read:', err)
-                    
+
                 })
         }
     }
@@ -68,7 +68,7 @@ export function MailDetails() {
                 })
                 .catch(err => {
                     console.error('Error marking mail as unread:', err)
-                    
+
                 })
         }
     }
@@ -84,7 +84,7 @@ export function MailDetails() {
                     <span onClick={(event) => onRemoveMail(event, mail.id)} className="material-symbols-outlined delete" title="Delete mail">delete</span>
                 </div>
                 <div className="symbol-container-right">
-                {mail.isRead ? (
+                    {mail.isRead ? (
                         <span className="material-symbols-outlined unread" title="Mark as unread" onClick={onMarkAsUnread}>mark_email_unread</span>
                     ) : (
                         <span className="material-symbols-outlined read" title="Mark as read" onClick={onMarkAsRead}>mark_email_read</span>
@@ -97,13 +97,21 @@ export function MailDetails() {
                 </div>
             </div>
             <div className="mail-details">
-            <h2>{mail.subject}</h2>
-            <div className="flex space-between">
-            <h3>{`from:${mail.from}`}</h3>
-            <h5>{`sent at:  ${mail.sentAt}`}</h5>
-            </div>
-            <h5>{`to: ${mail.to}`}</h5>
-            <p>{mail.body}</p>
+                <h2>{mail.subject}</h2>
+                <div className="flex space-between">
+                    <h3>{`from:${mail.from}`}</h3>
+                    <h5>{`sent at:  ${mail.sentAt}`}</h5>
+                </div>
+                <h5>{`to: ${mail.to}`}</h5>
+                {/* <p>{mail.body}</p> */}
+                <p>
+                    {mail.body.split('\n').map((line, index) => (
+                        <React.Fragment key={index}>
+                            {line}
+                            <br />
+                        </React.Fragment>
+                    ))}
+                </p>
             </div>
 
 
