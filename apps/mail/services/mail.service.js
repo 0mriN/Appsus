@@ -15,7 +15,6 @@ const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'Mahatma Appsus'
 }
-
 _createMails()
 
 export const mailService = {
@@ -34,7 +33,7 @@ export const mailService = {
 
 }
 
-function query(filterBy = {}) {
+function query(filterBy = {}, sortBy = { field: 'sentAt', order: 'desc' }) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
             let mailsToDisplay = [...mails]
@@ -50,10 +49,34 @@ function query(filterBy = {}) {
                 const regex = new RegExp(filterBy.body, 'i')
                 mailsToDisplay = mails.filter(mail => regex.test(mail.body))
             }
-            if (filterBy.to && !mailsToDisplay.length){
+            if (filterBy.to && !mailsToDisplay.length) {
                 const regex = new RegExp(filterBy.to, 'i')
                 mailsToDisplay = mails.filter(mail => regex.test(mail.to))
             }
+            mailsToDisplay.sort((a, b) => {
+                if (sortBy.field === 'sentAt') {
+                    if (sortBy.order === 'asc') {
+                        return a.sentAt - b.sentAt
+                    } else {
+                        return b.sentAt - a.sentAt
+                    }
+                }
+                if (sortBy.field === 'isStarred') {
+                    if (sortBy.order === 'desc') {
+                        return a.isStarred ? -1 : 1
+                    } else {
+                        return a.isStarred ? 1 : -1
+                    }
+                }
+                if (sortBy.field === 'isRead') {
+                    if (sortBy.order === 'asc') {
+                        return a.isRead ? -1 : 1
+                    } else {
+                        return a.isRead ? 1 : -1
+                    }
+                }
+                return b.sentAt - a.sentAt;
+            })
             return mailsToDisplay
         })
 }
@@ -169,7 +192,7 @@ function _createMails() {
     const timeStamps = [1719421615, 1719421595, 1687788395000, 1590501995000, 1719410795000, 1719389495000, 1707988295000, 1713287495000, 1719378695000]
     if (!mails || !mails.length) {
         mails = []
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 15; i++) {
             const mail =
             {
                 id: utilService.makeId(),
@@ -177,7 +200,7 @@ function _createMails() {
                 subject: utilService.makeLorem(2),
                 body: utilService.makeLorem(8),
                 isRead: false,
-                isStarred:false,
+                isStarred: false,
                 sentAt: timeStamps[utilService.getRandomIntInclusive(0, timeStamps.length - 1)],
                 removedAt: null,
                 from: emailAdress[utilService.getRandomIntInclusive(0, emailAdress.length - 1)],

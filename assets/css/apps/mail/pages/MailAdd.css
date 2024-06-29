@@ -9,7 +9,6 @@
 
 .mail-add form {
     display: grid;
-
     padding: 20px;
     width: 400px;
     gap: 10px;
@@ -18,20 +17,21 @@
 }
 
 .mail-add textarea {
-    resize: vertical; 
+    resize: vertical;
     font-size: 1em;
     line-height: 1.5;
     padding: 10px;
     border-radius: 15px;
-    border:0px
+    border: 0px
 }
 
-.mail-add input,button {
+.mail-add input,
+button {
     border-radius: 15px;
-    border:0px
+    border: 0px
 }
 
 .mail-add .form {
-   display: flex;
-   justify-content: center;
+    display: flex;
+    justify-content: center;
 }

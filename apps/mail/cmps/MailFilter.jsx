@@ -30,7 +30,7 @@ export function MailFilter({ filterBy, onSetFilter }) {
             default:
                 break
         }
-        setFilterByToEdit(prevFilter => ({ ...prevFilter, from: value, subject: value, body: value, to:value}))
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, from: value, subject: value, body: value, to: value }))
     }
 
     const { from } = filterByToEdit

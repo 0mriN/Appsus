@@ -31,7 +31,7 @@
  }
 
  .mail-add-btn {
-    display: flex;
+     display: flex;
      width: 7.375rem;
      height: 3.7rem;
      border-radius: 16px;
@@ -71,4 +71,18 @@
 
  .nav-options span {
      margin-right: 4px;
+ }
+
+ .sort-controls-container {
+     display: flex;
+     justify-content: center;
+     margin: 10px;
+     font-family: 'roboto';
+ }
+
+ .sort-bar {
+     border-radius: 15px;
+     background-color: #eaf1fb;
+     padding: 3px;
+     font-family: 'roboto';
  }

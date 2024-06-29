@@ -11,20 +11,42 @@ export function MailIndex() {
 
     const [mails, setMails] = useState(null)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+    const [sortBy, setSortBy] = useState({ field: 'sentAt', order: 'desc' })
 
 
     useEffect(() => {
         loadMails()
-    }, [filterBy])
+    }, [filterBy, sortBy])
 
     function loadMails() {
-        mailService.query(filterBy)
+        mailService.query(filterBy, sortBy)
             .then(mails => {
-                setMails(mails.sort((a, b) => b.sentAt - a.sentAt))
+                setMails(mails)
             })
             .catch(err => {
                 console.log('err:', err)
             })
+    }
+
+    function onSortBy(sortOption) {
+
+        let newSortBy = { ...sortBy }
+
+        if (sortOption === 'date') {
+            if (sortBy.field === 'sentAt') {
+                newSortBy = { field: 'sentAt', order: sortBy.order === 'asc' ? 'desc' : 'asc' }
+            } else {
+                newSortBy = { field: 'sentAt', order: 'desc' }
+            }
+        } else if (sortOption === 'starred') {
+            newSortBy = { field: 'isStarred', order: 'desc' }
+        } else if (sortOption === 'read') {
+            newSortBy = { field: 'isRead', order: 'asc' }
+        } else if (sortOption === 'unread') {
+            newSortBy = { field: 'isRead', order: 'desc' }
+        }
+
+        setSortBy(newSortBy);
     }
 
     function onRemoveMail(ev, mailId) {
@@ -100,8 +122,7 @@ export function MailIndex() {
                 console.error('Error marking mail as unstarred:', err)
             })
     }
-    console.log('mails:', mails);
-    console.log('filterBy:', filterBy);
+
 
     if (!mails) return <div>Loading...</div>
     return (
@@ -109,8 +130,23 @@ export function MailIndex() {
             <header className="mail-header">
                 <img src="./assets/img/c-gmail-logo.png"></img>
                 <MailFilter filterBy={filterBy} onSetFilter={onSetFilter} className="mail-search" />
-
             </header>
+
+            <div className="sort-controls-container">
+                <div className="mail-sort-controls">
+                    <label htmlFor="sortSelect">Sort by</label>
+                    <select className="sort-bar" id="sortSelect" value={`${sortBy.field}:${sortBy.order}`} onChange={(ev) => {
+                        const [field, order] = ev.target.value.split(':');
+                        setSortBy({ field, order })
+                    }}>
+                        <option value="sentAt:desc">Date (Newest first)</option>
+                        <option value="isStarred:desc">Starred</option>
+                        <option value="isRead:asc">Read</option>
+                        <option value="isRead:desc">Unread</option>
+                    </select>
+                </div>
+            </div>
+
             <section className="mail-index">
                 <div className="mail-options">
                     <Link to="/mail/add" >
@@ -145,19 +181,13 @@ export function MailIndex() {
                 <div className="mail-list-container">
                     <MailList
                         mails={mails}
-                        onRemoveMail={onRemoveMail} 
+                        onRemoveMail={onRemoveMail}
                         onMarkAsRead={onMarkAsRead}
                         onMarkAsUnread={onMarkAsUnread}
                         onMarkAsStarred={onMarkAsStarred}
                         onMarkAsUnstarred={onMarkAsUnstarred}
-                        />
+                    />
                 </div>
-                {/* <div className="nav-symbols">
-                    <span className="material-symbols-outlined calendar">calendar_month</span>
-                    <span className="material-symbols-outlined notes">batch_prediction</span>
-                    <span className="material-symbols-outlined task">task_alt</span>
-                    <span className="material-symbols-outlined contact">contacts_product</span>
-                </div> */}
             </section>
         </section>
     )
