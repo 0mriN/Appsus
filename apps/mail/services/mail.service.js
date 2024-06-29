@@ -129,7 +129,7 @@ function _createMails() {
                 sentAt: timeStamps[utilService.getRandomIntInclusive(0, timeStamps.length - 1)],
                 removedAt: null,
                 from: emailAdress[utilService.getRandomIntInclusive(0, emailAdress.length - 1)],
-                to: 'user@appsus.co'
+                to: 'Omri@appsus.com'
             }
             mails.push(mail)
         }

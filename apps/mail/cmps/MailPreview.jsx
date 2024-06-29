@@ -18,19 +18,19 @@ export function MailPreview({ mail, onRemoveMail }) {
 
     return (
         <section className="mail-preview space-between">
-            <span className="material-symbols-outlined checkbox">check_box_outline_blank</span>
-            {/* <span class="material-symbols-outlined">check_box</span> */}
-            <span className="material-symbols-outlined star">grade</span>
-            <span className="material-symbols-outlined important">label_important</span>
+            <span className="material-symbols-outlined checkbox" title="Select">check_box_outline_blank</span>
+            {/* <span class="material-symbols-outlined" title="Selected">check_box</span> */}
+            <span className="material-symbols-outlined star" title="Star">grade</span>
+            <span className="material-symbols-outlined important"  title="Important">label_important</span>
             <h3>{mail.from}</h3>
             <h3 className="subject">{`${mail.subject}`}</h3>
             <LongTxt txt ={mail.body} />
             {/* <p className="subject">{mail.body}</p> */}
-            <span className="material-symbols-outlined archive right-symbols">archive</span>
-            <span onClick={(event) => onRemoveMail(event, mail.id)} className="material-symbols-outlined delete right-symbols">delete</span>
-            <span className="material-symbols-outlined unread right-symbols">mark_email_unread</span>
-            {/* <span className="material-symbols-outlined read right-symbols">mark_email_read</span> */}
-            <span className="material-symbols-outlined schedule right-symbols">schedule</span>
+            <span className="material-symbols-outlined archive right-symbols" title="Archive">archive</span>
+            <span onClick={(event) => onRemoveMail(event, mail.id)} className="material-symbols-outlined delete right-symbols" title="Delete">delete</span>
+            <span className="material-symbols-outlined unread right-symbols" title="Mark as unread">mark_email_unread</span>
+            {/* <span className="material-symbols-outlined read right-symbols" title="Mark as read">mark_email_read</span> */}
+            <span className="material-symbols-outlined schedule right-symbols" title="Snooze (under development)">schedule</span>
             <p className="date">{date}</p>
         </section>
     )

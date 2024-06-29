@@ -53,7 +53,7 @@ export function MailDetails() {
             <div className="upper-row flex space-between">
                 <div className="symbol-container-left">
                     <Link to="/mail"><span className="material-symbols-outlined arrow-back">arrow_back</span></Link>
-                    <span className="material-symbols-outlined archive">archive</span>
+                    <span className="material-symbols-outlined archive" title="Archive">archive</span>
                     <span className="material-symbols-outlined report" title ="Report this mail">report</span>
                     <span onClick={(event) => onRemoveMail(event, mail.id)} className="material-symbols-outlined delete" title ="Delete mail">delete</span>
                 </div>
@@ -67,6 +67,11 @@ export function MailDetails() {
                 </div>
             </div>
             <h2>{mail.subject}</h2>
+            <h3>{`from:${mail.from}`}</h3>
+            <h5>{`to: ${mail.to}`}</h5>
+            <h5>{`sent at:  ${mail.sentAt}`}</h5>
+            <p>{mail.body}</p>
+
 
         </section>
     )
